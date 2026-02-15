@@ -154,7 +154,8 @@ app.post('/api/chat', async (c) => {
   return streamSSE(c, async (stream) => {
     const response = anthropic.messages.stream({
       model: 'claude-opus-4-6',
-      max_tokens: 1024,
+      max_tokens: 16000,
+      thinking: { type: 'adaptive' },
       system: systemPrompt,
       messages,
     });
