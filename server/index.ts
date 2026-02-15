@@ -153,7 +153,7 @@ app.post('/api/chat', async (c) => {
 
   return streamSSE(c, async (stream) => {
     const response = anthropic.messages.stream({
-      model: 'claude-opus-4-6-20250929',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
       system: systemPrompt,
       messages,
