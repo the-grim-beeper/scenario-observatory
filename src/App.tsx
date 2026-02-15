@@ -7,6 +7,7 @@ import PlaygroundView from './views/PlaygroundView';
 import CompareView from './views/CompareView';
 import PestleViewComponent from './views/PestleView';
 import PopulationViewComponent from './views/PopulationView';
+import InterviewView from './views/InterviewView';
 
 const pageTransition = {
   initial: { opacity: 0, y: 6 },
@@ -82,6 +83,14 @@ function PopulationsPage() {
   );
 }
 
+function InterviewPage() {
+  return (
+    <PageWrapper>
+      <InterviewView />
+    </PageWrapper>
+  );
+}
+
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -94,6 +103,7 @@ function AnimatedRoutes() {
         <Route path="/compare" element={<ComparePage />} />
         <Route path="/pestle" element={<PestlePage />} />
         <Route path="/populations" element={<PopulationsPage />} />
+        <Route path="/interview" element={<InterviewPage />} />
       </Routes>
     </AnimatePresence>
   );

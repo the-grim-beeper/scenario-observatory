@@ -6,6 +6,7 @@ import {
   GitCompareArrows,
   Layers,
   Users,
+  MessageSquare,
 } from 'lucide-react';
 
 interface NavItem {
@@ -20,6 +21,7 @@ const navItems: NavItem[] = [
   { path: '/compare', icon: GitCompareArrows, label: 'Compare' },
   { path: '/pestle', icon: Layers, label: 'PESTLE' },
   { path: '/populations', icon: Users, label: 'Field Notes' },
+  { path: '/interview', icon: MessageSquare, label: 'Interview' },
 ];
 
 export default function Navigation() {
