@@ -333,20 +333,20 @@ export default function InterviewView() {
         const lines = buffer.split('\n');
         buffer = lines.pop() || '';
 
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const data = line.slice(6);
-            if (data === '[DONE]') break;
-            try {
-              const parsed = JSON.parse(data) as { text: string };
-              accumulated += parsed.text;
-              setMessages([
-                ...updatedMessages,
-                { role: 'assistant', content: accumulated },
-              ]);
-            } catch {
-              // Skip malformed chunks
-            }
+        for (const rawLine of lines) {
+          const line = rawLine.trim();
+          if (!line.startsWith('data:')) continue;
+          const data = line.startsWith('data: ') ? line.slice(6) : line.slice(5);
+          if (data === '[DONE]') break;
+          try {
+            const parsed = JSON.parse(data) as { text: string };
+            accumulated += parsed.text;
+            setMessages([
+              ...updatedMessages,
+              { role: 'assistant', content: accumulated },
+            ]);
+          } catch {
+            // Skip malformed chunks
           }
         }
       }
