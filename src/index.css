@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* Parchment / atlas palette */
+  --color-parchment: #F5F2EB;
+  --color-surface: #FEFDFB;
+  --color-surface-warm: #FAF8F3;
+
+  --color-ink-900: #1C1A17;
+  --color-ink-800: #2D2A26;
+  --color-ink-700: #3D3A35;
+  --color-ink-600: #55514A;
+  --color-ink-500: #6E6A62;
+  --color-ink-400: #8C8578;
+  --color-ink-300: #AEA898;
+  --color-ink-200: #D1CCc0;
+  --color-ink-150: #E0DCD3;
+  --color-ink-100: #EAE7E0;
+
+  /* Terrain accent colors */
+  --color-topo-sage: #5E8C61;
+  --color-topo-teal: #2A7F7F;
+  --color-topo-blue: #6B8BA4;
+  --color-topo-sienna: #B87A56;
+  --color-topo-amber: #C4922A;
+  --color-topo-brown: #8B6F4E;
+
+  /* Scenario accent colors (kept from data) */
+  --color-accent-rose: #E11D48;
+  --color-accent-violet: #7C3AED;
+  --color-accent-amber: #D97706;
+  --color-accent-teal: #0D9488;
+  --color-accent-emerald: #059669;
+  --color-accent-cyan: #0891B2;
+  --color-accent-indigo: #4F46E5;
+
+  /* Fonts */
+  --font-display: 'Spectral', Georgia, serif;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-parchment);
+    color: var(--color-ink-700);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Scrollbar — subtle parchment */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-200); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
+
+/* Contour line background pattern */
+.topo-contours {
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='100' cy='100' rx='90' ry='70' fill='none' stroke='%235E8C61' stroke-width='0.5' opacity='0.08'/%3E%3Cellipse cx='100' cy='100' rx='70' ry='54' fill='none' stroke='%235E8C61' stroke-width='0.5' opacity='0.06'/%3E%3Cellipse cx='100' cy='100' rx='50' ry='38' fill='none' stroke='%235E8C61' stroke-width='0.5' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
+}
+
+/* Ruled line accent */
+.ruled-line {
+  border-bottom: 1px solid var(--color-ink-200);
+  position: relative;
+}
+.ruled-line::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--color-ink-100);
+}
+
+/* Map label style */
+.map-label {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-400);
+}
+
+/* Atlas card */
+.atlas-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-ink-150);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(28, 26, 23, 0.04), 0 1px 2px rgba(28, 26, 23, 0.02);
+}
+
+/* Custom slider for playground */
+.playground-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb-color, #2A7F7F);
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 1px 4px rgba(28,26,23,0.25);
+  cursor: grab;
+  position: relative;
+  z-index: 10;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.playground-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 2px 8px rgba(28,26,23,0.3);
+  transform: scale(1.15);
+}
+.playground-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(1.05);
+}
+.playground-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb-color, #2A7F7F);
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 1px 4px rgba(28,26,23,0.25);
+  cursor: grab;
+}
+.playground-slider::-webkit-slider-runnable-track {
+  height: 2px;
+  background: transparent;
+}
+.playground-slider::-moz-range-track {
+  height: 2px;
+  background: transparent;
+  border: none;
+}
